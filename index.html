@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Git, GitHub e Resolução de Conflitos | Guia Completo</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 Git & GitHub</h1>
+            <p>Guia Completo para Controle de Versão e Resolução de Conflitos</p>
+        </div>
+
+        <div class="grid">
+            <div class="card">
+                <h2><span class="git-logo">Git</span>O que é Git?</h2>
+                <p>Git é um sistema de controle de versão <strong>distribuído</strong> criado por Linus Torvalds em 2005. Permite que desenvolvedores colaborem em projetos sem precisar estar no mesmo local.</p>
+                
+                <h3>🎯 Principais Vantagens</h3>
+                <ul>
+                    <li>Sistema distribuído (cada clone é um backup completo)</li>
+                    <li>Trabalho offline</li>
+                    <li>Branches leves e rápidas</li>
+                    <li>Histórico completo e imutável</li>
+                    <li>Resolução inteligente de conflitos</li>
+                </ul>
+
+                <div class="flow-diagram">
+                    <div class="flow-step">Working Directory</div>
+                    <div class="flow-step">→ git add →</div>
+                    <div class="flow-step">Staging Area</div>
+                    <div class="flow-step">→ git commit →</div>
+                    <div class="flow-step">Repository</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2><span class="github-logo">GH</span>GitHub</h2>
+                <p>GitHub é uma plataforma de hospedagem de repositórios Git fundada em 2008. É a maior comunidade de desenvolvedores do mundo.</p>
+                
+                <h3>🌟 Recursos do GitHub</h3>
+                <ul>
+                    <li><strong>Pull Requests:</strong> Revisão de código colaborativa</li>
+                    <li><strong>Issues:</strong> Rastreamento de bugs e features</li>
+                    <li><strong>Actions:</strong> CI/CD integrado</li>
+                    <li><strong>Pages:</strong> Hospedagem gratuita de sites</li>
+                    <li><strong>Copilot:</strong> IA para programação</li>
+                </ul>
+
+                <div class="tip">
+                    <strong>💡 Dica:</strong> Crie um repositório com seu nome de usuário para ter um README especial no seu perfil!
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>📋 Comandos Essenciais</h2>
+                
+                <h3>Configuração Inicial</h3>
+                <div class="command-box">
+git config --global user.name "Seu Nome"
+git config --global user.email "seu@email.com"
+                </div>
+
+                <h3>Comandos Básicos</h3>
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Comando</th>
+                                <th>Descrição</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>git init</code></td>
+                                <td>Inicializa repositório</td>
+                            </tr>
+                            <tr>
+                                <td><code>git clone &lt;url&gt;</code></td>
+                                <td>Clona repositório remoto</td>
+                            </tr>
+                            <tr>
+                                <td><code>git status</code></td>
+                                <td>Estado da árvore de trabalho</td>
+                            </tr>
+                            <tr>
+                                <td><code>git add &lt;arquivo&gt;</code></td>
+                                <td>Adiciona ao staging</td>
+                            </tr>
+                            <tr>
+                                <td><code>git commit -m "msg"</code></td>
+                                <td>Cria commit</td>
+                            </tr>
+                            <tr>
+                                <td><code>git push</code></td>
+                                <td>Envia para remoto</td>
+                            </tr>
+                            <tr>
+                                <td><code>git pull</code></td>
+                                <td>Atualiza do remoto</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>🌳 Trabalhando com Branches</h2>
+                
+                <h3>Comandos de Branch</h3>
+                <div class="command-box">
+# Criar e trocar para nova branch
+git checkout -b feature/nova-funcionalidade
+
+# Listar branches
+git branch
+
+# Trocar de branch
+git checkout main
+
+# Deletar branch
+git branch -d nome-da-branch
+                </div>
+
+                <h3>🏷️ Convenções de Nomenclatura</h3>
+                <ul>
+                    <li><span class="badge">feature/123-criar-endpoint</span> Nova funcionalidade</li>
+                    <li><span class="badge">fix/456-corrigir-bug</span> Correção de bug</li>
+                    <li><span class="badge">hotfix/problema-critico</span> Correção urgente</li>
+                    <li><span class="badge">docs/atualizar-readme</span> Documentação</li>
+                    <li><span class="badge">chore/deps-update</span> Tarefas de manutenção</li>
+                </ul>
+
+                <div class="tip">
+                    <strong>💡 Boas Práticas:</strong><br>
+                    • Use kebab-case (palavras-separadas-por-hifen)<br>
+                    • Inclua ID do ticket quando possível<br>
+                    • Seja descritivo mas conciso
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>🔄 Merge e Rebase</h2>
+                
+                <h3>Atualizando sua Branch</h3>
+                <div class="command-box">
+# Método 1: Merge (cria commit de merge)
+git checkout feature/minha-branch
+git fetch origin
+git merge origin/main
+
+# Método 2: Rebase (mantém histórico linear)
+git fetch origin
+git rebase origin/main
+                </div>
+
+                <h3>📊 Estratégias de Merge no GitHub</h3>
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Estratégia</th>
+                                <th>Resultado</th>
+                                <th>Quando Usar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Merge Commit</strong></td>
+                                <td>Preserva histórico completo</td>
+                                <td>Projetos que valorizam rastreabilidade</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Squash and Merge</strong></td>
+                                <td>Condensa todos commits em 1</td>
+                                <td>PRs com muitos commits pequenos</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Rebase and Merge</strong></td>
+                                <td>Histórico linear sem merge commit</td>
+                                <td>Times experientes</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>⚡ Git Stash</h2>
+                <p>Guarda mudanças temporariamente sem fazer commit, útil para trocar de branch rapidamente.</p>
+                
+                <div class="command-box">
+# Guardar alterações
+git stash
+
+# Guardar com mensagem
+git stash save "ajustes no header"
+
+# Listar stashes
+git stash list
+
+# Recuperar último stash (mantém no histórico)
+git stash apply
+
+# Recuperar e remover do histórico
+git stash pop
+
+# Limpar todos os stashes
+git stash clear
+                </div>
+
+                <div class="tip">
+                    <strong>🎯 Quando usar:</strong> Precisa trocar de branch mas não quer fazer commit das alterações atuais.
+                </div>
+            </div>
+        </div>
+
+        <div class="card" style="grid-column: 1 / -1;">
+            <h2>🔧 Resolução de Conflitos</h2>
+            
+            <div class="conflict-example">
+                <h3>🚨 O que são Conflitos?</h3>
+                <p>Conflitos acontecem quando duas pessoas modificam a mesma linha de código. O Git não consegue decidir automaticamente qual versão manter.</p>
+            </div>
+
+            <h3>🔍 Identificando Conflitos</h3>
+            <div class="command-box">
+git merge feature-branch
+# Saída: CONFLICT (content): Merge conflict in arquivo.js
+git status  # mostra arquivos em conflito
+            </div>
+
+            <h3>📝 Marcadores de Conflito</h3>
+            <div class="conflict-markers">
+&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+// Sua versão na branch atual
+function somar(a, b) {
+    return a + b + 1;  // você adicionou + 1
+}
+=======
+// Versão que veio da outra branch
+function somar(a, b) {
+    return (a + b) * 2;  // outra pessoa multiplicou por 2
+}
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; feature-branch
+            </div>
+
+            <h3>✅ Passos para Resolver</h3>
+            <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
+                <div>
+                    <h4>1. Identificar arquivos</h4>
+                    <div class="command-box">git status</div>
+                </div>
+                <div>
+                    <h4>2. Editar arquivo</h4>
+                    <p>Remover marcadores e escolher código correto</p>
+                </div>
+                <div>
+                    <h4>3. Adicionar ao stage</h4>
+                    <div class="command-box">git add arquivo.js</div>
+                </div>
+                <div>
+                    <h4>4. Finalizar merge</h4>
+                    <div class="command-box">git commit</div>
+                </div>
+            </div>
+
+            <h3>🛠️ Ferramentas Úteis</h3>
+            <div class="command-box">
+# Ver diferenças
+git diff
+
+# Cancelar merge em andamento
+git merge --abort
+
+# Usar ferramenta visual (VS Code, etc)
+git mergetool
+            </div>
+
+            <div class="warning">
+                <strong>⚠️ Importante:</strong> Sempre teste o código após resolver conflitos para garantir que tudo funciona corretamente!
+            </div>
+        </div>
+
+        <div class="card" style="grid-column: 1 / -1;">
+            <h2>📝 Commits Semânticos</h2>
+            <p>Padronização de mensagens de commit para facilitar leitura do histórico e automações.</p>
+
+            <h3>🏗️ Formato</h3>
+            <div class="command-box">
+&lt;tipo&gt;(&lt;escopo&gt;): &lt;resumo&gt;
+
+[corpo opcional explicando o porquê]
+[Refs: #&lt;issue&gt;]
+            </div>
+
+            <h3>🏷️ Tipos Principais</h3>
+            <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
+                <div>
+                    <span class="badge">feat</span> Nova funcionalidade<br>
+                    <span class="badge">fix</span> Correção de bug<br>
+                    <span class="badge">docs</span> Documentação<br>
+                    <span class="badge">style</span> Formatação
+                </div>
+                <div>
+                    <span class="badge">refactor</span> Refatoração<br>
+                    <span class="badge">test</span> Testes<br>
+                    <span class="badge">build</span> Build/dependências<br>
+                    <span class="badge">ci</span> Pipelines CI
+                </div>
+            </div>
+
+            <h3>✨ Exemplos Práticos</h3>
+            <div class="command-box">
+feat(readme): inclusão do campo about me
+fix(api): tratar null pointer ao criar pedido
+docs(contrib): adicionar guia de pull request
+refactor(core): extrair serviço de cálculo de frete
+chore(deps): atualizar axios para ^1.7.0
+            </div>
+
+            <div class="tip">
+                <strong>🎯 Benefícios:</strong> Facilita changelog automático, leitura do histórico e validações de CI/CD.
+            </div>
+        </div>
+
+        <div class="card" style="grid-column: 1 / -1;">
+            <h2>🔄 Pull Requests (GitHub Flow)</h2>
+            
+            <h3>📋 Template de PR</h3>
+            <div class="command-box">
+## Objetivo
+- Implementar autenticação JWT
+
+## Mudanças
+- Criado middleware de autenticação
+- Adicionado login/logout endpoints
+- Atualizada documentação da API
+
+## Checklist
+- [x] Testes locais passando
+- [x] Documentação atualizada
+- [x] Sem warnings no console
+- [ ] Review de segurança
+            </div>
+
+            <div class="flow-diagram">
+                <h3>🔄 Fluxo Completo</h3>
+                <div class="flow-step">1. Criar Branch</div>
+                <div class="flow-step">2. Fazer Commits</div>
+                <div class="flow-step">3. Push para Origin</div>
+                <div class="flow-step">4. Abrir PR</div>
+                <div class="flow-step">5. Code Review</div>
+                <div class="flow-step">6. Merge</div>
+            </div>
+        </div>
+
+        <div class="card" style="grid-column: 1 / -1;">
+            <h2>🚨 Comandos de Emergência</h2>
+            
+            <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+                <div>
+                    <h3>🔙 Voltar a um Commit</h3>
+                    <div class="table-responsive">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Método</th>
+                                    <th>Quando Usar</th>
+                                    <th>Comando</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>git revert</strong></td>
+                                    <td>Preservar histórico (seguro)</td>
+                                    <td><code>git revert &lt;hash&gt;</code></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>git reset</strong></td>
+                                    <td>Reescrever histórico local</td>
+                                    <td><code>git reset --hard &lt;hash&gt;</code></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Nova branch</strong></td>
+                                    <td>Testar sem afetar main</td>
+                                    <td><code>git checkout -b fix &lt;hash&gt;</code></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div>
+                    <h3>🔍 Investigação</h3>
+                    <div class="command-box">
+# Ver histórico
+git log --oneline --graph -10
+
+# Ver quem modificou linha
+git blame arquivo.js
+
+# Procurar no histórico
+git log --grep="bug fix"
+
+# Ver diferenças entre commits
+git diff commit1..commit2
+                    </div>
+                </div>
+            </div>
+
+            <div class="warning">
+                <strong>⚠️ Cuidado:</strong> Nunca use <code>git reset --hard</code> depois que commits já foram enviados e usados por outros!
+            </div>
+
+            <h3>🛡️ --force-with-lease</h3>
+            <p>Mais seguro que <code>--force</code> pois verifica se alguém mais fez push no intervalo:</p>
+            <div class="command-box">
+git fetch origin
+git rebase origin/main
+git push --force-with-lease  # ✅ Seguro
+# Em vez de: git push --force  # ❌ Perigoso
+            </div>
+        </div>
+
+        
+    </div>
+</body>
+</html>
